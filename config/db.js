@@ -8,6 +8,7 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true,
+      useFindAndModify: false,
     });
     console.log("MonogoDB connected");
   } catch (error) {

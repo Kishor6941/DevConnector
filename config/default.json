@@ -1,6 +1,6 @@
 {
-  "mongoURI": "mongodb+srv://Kishor6941:WXjJb3LWCq9kQLhY@cluster0.9whnh.mongodb.net/dev?retryWrites=true&w=majority",
+  "mongoURI": "xxxx",
   "jwtsecret": "kdgfkjks",
-  "githubClientId": "790f6ea4c0fcebaea2d3",
-  "githubSecret": "dd6c71c88918814848e3fe451d4546c51eda2456"
+  "githubClientId": "xxx",
+  "githubSecret": "xxxx"
 }

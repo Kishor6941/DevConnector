@@ -4,7 +4,7 @@ const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
-const { body, validationResult } = require("express-validator");
+const { check, validationResult } = require("express-validator");
 const User = require(".././Models/User");
 
 // @route    POST api/users
@@ -13,11 +13,11 @@ const User = require(".././Models/User");
 router.post(
   "/",
   [
-    body("name", "Name is required").not().isEmpty(),
+    check("name", "Name is required").not().isEmpty(),
 
-    body("email", "Please enter a valid email").isEmail(),
+    check("email", "Please enter a valid email").isEmail(),
 
-    body(
+    check(
       "password",
       "Please enter a password with 6 or more characters"
     ).isLength({ min: 6 }),
@@ -72,8 +72,8 @@ router.post(
           res.json({ token });
         }
       );
-    } catch (error) {
-      console.log(error.message);
+    } catch (err) {
+      console.error(err.message);
       return res.status(500).send("Server error");
     }
   }

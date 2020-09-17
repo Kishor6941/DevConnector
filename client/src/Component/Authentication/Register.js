@@ -2,9 +2,11 @@ import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { setAlert } from "../actions/alertaction";
+import { register } from "../actions/authaction";
+
 import PropTypes from "prop-types";
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,7 +27,7 @@ const Register = ({ setAlert }) => {
       //msg,alertType
       setAlert("Password do not match", "danger");
     } else {
-      setAlert("SUCCESS");
+      register({ name, email, password });
     }
   };
   return (
@@ -42,7 +44,6 @@ const Register = ({ setAlert }) => {
             name="name"
             value={name}
             onChange={(e) => onChange(e)}
-            required
             autoComplete="off"
           />
         </div>
@@ -53,7 +54,6 @@ const Register = ({ setAlert }) => {
             name="email"
             value={email}
             onChange={(e) => onChange(e)}
-            required
             autoComplete="off"
           />
           <small className="form-text">
@@ -66,10 +66,8 @@ const Register = ({ setAlert }) => {
             type="password"
             placeholder="Password"
             name="password"
-            minLength="6"
             value={password}
             onChange={(e) => onChange(e)}
-            required
             autoComplete="off"
           />
         </div>
@@ -78,10 +76,8 @@ const Register = ({ setAlert }) => {
             type="password"
             placeholder="Confirm Password"
             name="password2"
-            minLength="6"
             value={password2}
             onChange={(e) => onChange(e)}
-            required
             autoComplete="off"
           />
         </div>
@@ -96,9 +92,10 @@ const Register = ({ setAlert }) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 };
 
 // connect takes two parameter state we want state from alert
 // 2 parameter object with any actions you want to use. it allows us to access props.setAlert
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);

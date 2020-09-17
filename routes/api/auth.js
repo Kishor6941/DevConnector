@@ -8,9 +8,9 @@ const config = require("config");
 const { body, validationResult } = require("express-validator");
 
 // @route    GET api/auth
-// @desc    Test route
+// @desc   Get user details using user.id
 //@access   Public
-// Get user details using user.id
+//
 router.get("/", requireLogin, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
